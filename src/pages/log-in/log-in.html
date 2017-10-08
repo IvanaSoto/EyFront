@@ -1,0 +1,25 @@
+<ion-content padding class="bg">
+
+	<div text-center class="main-logo">
+		<span>Ey!</span>
+	</div>
+
+	<ion-list>
+		<ion-item>
+			<ion-label>Email</ion-label>
+			<ion-input type="email" [(ngModel)]="email"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label >Contraseña</ion-label>
+			<ion-input type="password" [(ngModel)]="password"></ion-input>
+		</ion-item>
+	</ion-list>
+
+	<div padding-left padding-right>
+	    <button (click)="login()" ion-button block class="primary-color">Ingresar</button>
+	    <button (click)="goToOrders()" ion-button block class="primary-color">orders</button>
+	    <button (click)="goToCode()" ion-button block class="primary-color">code</button>
+	</div>
+	
+</ion-content>

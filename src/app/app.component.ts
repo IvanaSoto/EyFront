@@ -2,9 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AlertController, MenuController } from 'ionic-angular';
+import { Events } from 'ionic-angular';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { AuthProvider } from '../providers/auth/auth';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,18 +13,26 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = "HomePage";
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, action: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              public alertCtrl: AlertController,
+              public authProvider : AuthProvider,
+              public events: Events,
+              public menuCtrl: MenuController ) {
+    
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
+    events.subscribe('user:login', (page) => {
+      this.updateMenu(page);
+    });
+
+    this.updateMenu('HomePage');
+
 
   }
 
@@ -36,9 +45,65 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
+  openPage(item) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if( item.action == "open-page" )
+    {
+      this.nav.setRoot(item.component);
+    }
+    else if( item.action == "logout" )
+    {
+      this.logout();
+    }
+  }
+
+  logout() {
+    let confirm = this.alertCtrl.create({
+      title: 'Salir?',
+      message: 'Estas seguro que quieres salir?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {}
+        },
+        {
+          text: 'Si, salir',
+          handler: () => {
+            this.authProvider.logout().then((data) => { this.updateMenu('') });
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  updateMenu(page: string) {
+    this.authProvider.userLoguedIn().then((loguedIn) => {
+      if( loguedIn )
+      {
+        this.rootPage = page;
+
+        this.menuCtrl.enable(true);
+
+            this.pages = [
+              { title: 'Home', action:'open-page', component: 'HomePage' },
+              { title: 'LogIn', action:'open-page', component: 'LogInPage' },
+              { title: 'Orders', action:'open-page', component: 'OrdersPage' },
+              { title: 'Mesas', action:'open-page', component: 'activeTablesPage' }
+            ];
+        
+      }
+      else
+      {
+        this.rootPage = "LogInPage";
+
+        this.menuCtrl.enable(false);
+
+        this.pages = [];
+
+      }
+      this.nav.setRoot( this.rootPage );
+    });
   }
 }

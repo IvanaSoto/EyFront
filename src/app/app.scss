@@ -14,3 +14,20 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+@import '../sass/components/table';
+.bg{
+	background-color: #ddd;
+}
+.main-logo{
+	margin-bottom: 40px;
+	span{
+		color: #E01E25;
+		font-size: 5em;
+	}
+}
+.item-md{
+	padding-right:16px !important; 
+}
+.primary-color{
+	background-color: #E01E25;
+}
