@@ -88,9 +88,10 @@ export class MyApp {
 
             this.pages = [
               { title: 'Home', action:'open-page', component: 'HomePage' },
-              { title: 'LogIn', action:'open-page', component: 'LogInPage' },
-              { title: 'Orders', action:'open-page', component: 'OrdersPage' },
-              { title: 'Mesas', action:'open-page', component: 'activeTablesPage' }
+              { title: 'Ordenes', action:'open-page', component: 'OrdersPage' },
+              { title: 'Mesas activas', action:'open-page', component: 'ActiveTablesPage' },
+              { title: 'Cargar código', action:'open-page', component: "CodePage" },
+              { title: 'Log Out', action:'logout', component: "" }
             ];
         
       }

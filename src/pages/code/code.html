@@ -6,18 +6,28 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-  	<button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Generar código</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Admin Mozos</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="bg">
-	<ion-label>Número de mesa</ion-label>
-	<ion-input type="text" [(ngModel)]="name"></ion-input>
-	<button (click)="generate()" ion-button block class="primary-color">Generar</button>
+    <h1>Generar código único para una mesa</h1>
+    <form [formGroup]="table">
+        <ion-list>
+            <ion-item>
+            	<ion-label>Mesa</ion-label>
+            	<ion-input type="text" formControlName="name" [(ngModel)]="name" ></ion-input>
+            </ion-item>
+        </ion-list>
+        <div>
+            <p>{{this.error}}</p>
+        </div>
+        <button (click)="generate()" ion-button block class="primary-color">Generar</button>
+    </form>
 </ion-content>

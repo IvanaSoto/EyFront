@@ -25,9 +25,9 @@ export class AuthProvider {
 				{	
 	    			return this.storage.set('token', response.data.token).then( (res) => {
 	    				let waiter = new Waiter(
-	    					response.data.waiter.name,
-	    					response.data.waiter.lastname,
-	    					response.data.waiter.email,
+	    					response.data.user.name,
+	    					response.data.user.lastname,
+	    					response.data.user.email,
 	    					"",
 	    					""
 	    				);

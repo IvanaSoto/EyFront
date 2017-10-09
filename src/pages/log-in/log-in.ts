@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Waiter } from '../../models/waiter';
 import { AuthProvider } from '../../providers/auth/auth';
+import { Events } from 'ionic-angular';
 import { HttpErrorHandlerProvider } from '../../providers/http-error-handler/http-error-handler';
 
 @IonicPage()
@@ -19,7 +20,8 @@ export class LogInPage {
 	constructor(public navCtrl: NavController,
   				public navParams: NavParams,
   				private authProvider : AuthProvider,
-  				private httpErrorHandler: HttpErrorHandlerProvider,) {
+				private events: Events,
+  				private httpErrorHandler: HttpErrorHandlerProvider) {
 
 		this.authProvider = authProvider;
 	}
@@ -34,8 +36,7 @@ export class LogInPage {
 				response => {
 					if( response.success )
 					{
-						console.log("logueado");
-						console.log(this.waiter)
+						_this_.events.publish('user:login', 'CodePage');
 					}
 					else
 					{
