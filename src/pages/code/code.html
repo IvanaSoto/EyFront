@@ -30,4 +30,8 @@
         </div>
         <button (click)="generate()" ion-button block class="primary-color">Generar</button>
     </form>
+    <div text-center class="code-box" *ngIf="this.code != undefined" >
+        <p>Código:</p>
+        <p class="code">{{this.code}}</p>
+    </div>
 </ion-content>

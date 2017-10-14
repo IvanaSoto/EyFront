@@ -18,28 +18,17 @@
 <ion-content padding class="bg">
 	<table>
 		<tr>
-			<th text-center class="title"> Código </th>
 			<th text-center class="title"> Mesa </th>
-			<th text-center class="title"> Personas </th>
 			<th text-center class="title"> Mozo </th>
+			<th text-center class="title"> Código </th>
+			<th text-center class="title"> Detalle </th>
 		</tr>
-		<tr>
-			<th text-left> ADS442 </th>
-			<th text-left> 2 </th>
-			<th text-left> 5 </th>
-			<th text-left> id: 17 nombre: Pepe </th>
-		</tr>
-		<tr>
-			<th text-left> <button (click)="goToDetail('ADS442')" ion-button block full class="primary-color">Detalle</button> </th>
-		</tr>
-		<tr>
-			<th text-left> JVT954 </th>
-			<th text-left> 6 </th>
-			<th text-left> 2 </th>
-			<th text-left> id: 17 nombre: Pepe </th>
-		</tr>
-		<tr>
-			<th text-left> <button (click)="goToDetail('JVT954')" ion-button block full class="primary-color">Detalle</button> </th>
+		<tr  *ngFor="let t of tables; let i = index">
+			<th text-left> {{t.name}} </th>
+			<th text-left> {{t.waiter.name}} </th>
+			<th text-left> {{t.code}} </th>
+			<th> <button (click)="goToDetail(t.code)" ion-button class="primary-color">Detalle</button> </th>
 		</tr>
 	</table>
 </ion-content>
+

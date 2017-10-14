@@ -13,7 +13,7 @@ import { AuthProvider } from '../providers/auth/auth';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = "HomePage";
+  rootPage: any = "CodePage";
 
   pages: Array<{title: string, action: string, component: any}>;
 
@@ -31,7 +31,7 @@ export class MyApp {
       this.updateMenu(page);
     });
 
-    this.updateMenu('HomePage');
+    this.updateMenu('CodePage');
 
 
   }
@@ -87,7 +87,6 @@ export class MyApp {
         this.menuCtrl.enable(true);
 
             this.pages = [
-              { title: 'Home', action:'open-page', component: 'HomePage' },
               { title: 'Ordenes', action:'open-page', component: 'OrdersPage' },
               { title: 'Mesas activas', action:'open-page', component: 'ActiveTablesPage' },
               { title: 'Cargar código', action:'open-page', component: "CodePage" },

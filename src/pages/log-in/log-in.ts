@@ -27,8 +27,6 @@ export class LogInPage {
 	}
 
 	login() {
-		console.log(this.email);
-		console.log(this.password);
 		
 		let _this_ = this;
 		this.authProvider.login( { email : this.email, password: this.password } )

@@ -4,20 +4,17 @@ export class Table {
 	quantity: string;
 	code: string;
 	created_at: string;
-	waiter: Waiter;
 
 	constructor(id: string,
 				name: string,
 				quantity: string,
 				code: string,
-				created_at: string,
-				waiter: Waiter,) {
+				created_at: string,) {
 
 		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
 		this.code = code;
 		this.created_at = created_at;
-		this.waiter = waiter;
 	}
 }
