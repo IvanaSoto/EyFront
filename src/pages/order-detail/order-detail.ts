@@ -7,7 +7,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { HttpErrorHandlerProvider } from '../../providers/http-error-handler/http-error-handler';
 
 /**
- * Generated class for the TableDetailsPage page.
+ * Generated class for the OrderDetailPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -15,41 +15,35 @@ import { HttpErrorHandlerProvider } from '../../providers/http-error-handler/htt
 
 @IonicPage()
 @Component({
-	selector: 'page-table-details',
-	templateUrl: 'table-details.html',
+  selector: 'page-order-detail',
+  templateUrl: 'order-detail.html',
 })
-export class TableDetailsPage {
+export class OrderDetailPage {
 
-	id: number;
+	id: int;
 	table: Table;
 
 	constructor(public navCtrl: NavController,
 				public navParams: NavParams,
-                private apiProvider: ApiProvider,
-  				private authProvider : AuthProvider,
+				private apiProvider: ApiProvider,
+				private authProvider : AuthProvider,
 				private storage: Storage,
-			    private httpErrorHandler: HttpErrorHandlerProvider) {
+				private httpErrorHandler: HttpErrorHandlerProvider) {
 
-		this.storage.get('tableId').then((val) => {
+		this.storage.get('orderId').then((val) => {
 			this.id = val; 
-	  		console.log(this.id);
-	  	});
+			console.log(this.id);
+		});
 
-		this.getTable();
+		this.getOrder();
+
 	}
 
-	getTable(){
+	getOrder(){
 		let _this_ = this;
 		this.id = parseInt(this.id);
-		return this.apiProvider.call("get", "table/" + this.id, 3, true).then( response => {
+		return this.apiProvider.call("get", "orders/" + this.id, this.id, true).then( response => {
             console.log(response);
-            this.table = new Table(
-                response.id,
-                response.name,
-                response.quantity_customers,
-                response.code,
-                response.created_at
-            );
         }).catch(function(error: any){
             console.log("mi error");
             console.log(error);
@@ -58,7 +52,7 @@ export class TableDetailsPage {
 	}
 
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad TableDetailsPage');
-  	}
+		console.log('ionViewDidLoad OrderDetailPage');
+	}
 
 }

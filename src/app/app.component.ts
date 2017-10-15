@@ -87,6 +87,7 @@ export class MyApp {
         this.menuCtrl.enable(true);
 
             this.pages = [
+              { title: 'Llamadas', action:'open-page', component: 'WaiterCallsPage' },
               { title: 'Ordenes', action:'open-page', component: 'OrdersPage' },
               { title: 'Mesas activas', action:'open-page', component: 'ActiveTablesPage' },
               { title: 'Cargar código', action:'open-page', component: "CodePage" },

@@ -6,13 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar>
- 	<button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Ordenes</ion-title>
-    <span>de mesas activas</span>
-  </ion-navbar>
+	<ion-navbar>
+		<button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+		<ion-title>Ordenes</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
@@ -20,23 +19,19 @@
 <ion-content padding class="bg">
 	<table>
 		<tr>
-			<th text-center class="title"> Código </th>
 			<th text-center class="title"> Mesa </th>
-			<th text-center class="title"> Descripción </th>
 			<th text-center class="title"> Mozo </th>
+			<th text-center class="title"> Código </th>
+			<th text-center class="title"> Detalle </th>
 		</tr>
-		<tr>
-			<th text-left> ADS442 </th>
-			<th text-left> 2 </th>
-			<th text-left> - Lorem ipsum dolor sit amet, consectetur adipisicing </th>
-			<th text-left> id: 17 nombre: Pepe </th>
-		</tr>
-		<tr>
-			<th text-left> ADS442 </th>
-			<th text-left> 2 </th>
-			<th text-left> - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt </th>
-			<th text-left> id: 17 nombre: Pepe </th>
+		<tr  *ngFor="let o of orders; let i = index">
+			<th text-left> {{o.table.name}} </th>
+			<th text-left> {{o.table.waiter.name}} {{o.table.waiter.lastname}} </th>
+			<th text-left> {{o.table.code}} </th>
+			<th> <button (click)="goToDetail(o.id)" ion-button class="primary-color">Detalle</button> </th>
 		</tr>
 	</table>
+
+	<button *ngIf="prev != undefined" ion-button class="primary-color"> Anterior </button>
+	<button *ngIf="next != undefined" ion-button class="primary-color"> Siguiente </button>
 </ion-content>

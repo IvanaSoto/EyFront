@@ -5,6 +5,7 @@ import { Waiter } from '../../models/waiter';
 import { Table } from '../../models/table';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Events } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { HttpErrorHandlerProvider } from '../../providers/http-error-handler/http-error-handler';
 
 /**
@@ -30,6 +31,7 @@ export class ActiveTablesPage {
   				private authProvider : AuthProvider,
 				private events: Events,
                 private apiProvider: ApiProvider,
+                private storage: Storage,
 			    private httpErrorHandler: HttpErrorHandlerProvider) {
 
 	  	this.read();
@@ -66,9 +68,10 @@ export class ActiveTablesPage {
         });
     }
 
-    goToDetail(code){
+    goToDetail(id){
         this.tables.map( t => {
-            if (t.code == code) {
+            if (t.id == id) {
+                this.storage.set('tableId', id);
                 this.navCtrl.push("TableDetailsPage");
             }
         });

@@ -25,10 +25,13 @@
 		</tr>
 		<tr  *ngFor="let t of tables; let i = index">
 			<th text-left> {{t.name}} </th>
-			<th text-left> {{t.waiter.name}} </th>
+			<th text-left> {{t.waiter.name}} {{t.waiter.lastname}} </th>
 			<th text-left> {{t.code}} </th>
-			<th> <button (click)="goToDetail(t.code)" ion-button class="primary-color">Detalle</button> </th>
+			<th> <button (click)="goToDetail(t.id)" ion-button class="primary-color">Detalle</button> </th>
 		</tr>
 	</table>
+
+	<button *ngIf="prev != undefined" ion-button class="primary-color"> Anterior </button>
+	<button *ngIf="next != undefined" ion-button class="primary-color"> Siguiente </button>
 </ion-content>
 

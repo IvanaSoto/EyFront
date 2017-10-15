@@ -4,15 +4,35 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+-->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>waiterCalls</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+		<ion-title>Llamadas a mozos</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bg">
+	<table>
+		<tr>
+			<th text-center class="title"> Mesa </th>
+			<th text-center class="title"> Mozo </th>
+			<th text-center class="title"> Código </th>
+			<th text-center class="title"> Pedido </th>
+		</tr>
+		<tr  *ngFor="let c of calls; let i = index">
+			<th text-left> {{c.table.name}} </th>
+			<th text-left> {{c.table.waiter.name}} {{c.table.waiter.lastname}} </th>
+			<th text-left> {{c.table.code}} </th>
+			<th text-left> {{c.asking_for}} </th>
+		</tr>
+	</table>
 
+	<button *ngIf="prev != undefined" ion-button class="primary-color"> Anterior </button>
+	<button *ngIf="next != undefined" ion-button class="primary-color"> Siguiente </button>
 </ion-content>
