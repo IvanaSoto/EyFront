@@ -17,5 +17,48 @@
 
 
 <ion-content padding class="bg">
-	<p>Fecha de creación: {{table}}</p>
+
+	<div *ngIf="detail != undefined">
+		<button ion-button clear class="editar" (click)="goToEditName(detail.id)"> EDITAR NOMBRE DE MESA</button>
+		<p><strong>Mesa:</strong> {{detail.name}} </p>
+		<p><strong>Fecha de creación:</strong> {{detail.created_at}} </p>
+		<p><strong>Código:</strong> {{detail.code}} </p>
+		<p><strong>Cant. Personas:</strong> {{detail.quantity_customers}} </p>
+		<p><strong>Mozo:</strong> {{detail.waiter.name}} {{detail.waiter.lastname}} </p>
+		<p><strong text-left>Total a pagar:</strong> ${{totalPriceTable}} </p>
+		<p><strong text-left>Total puntos:</strong> {{totalPointsTable}} </p>
+
+		<div class="pedido" *ngFor="let o of detail.orders; let i = index">
+			<h1>Pedido {{i+1}}</h1>
+			<p>{{o.created_at}}</p>
+			<table>
+				<tr>
+					<th text-center class="title"> Producto </th>
+					<th text-center class="title"> Cant. </th>
+					<th text-center class="title"> Puntos </th>
+					<th text-center class="title"> Precio </th>
+				</tr>
+				<tr *ngFor="let d of o.order_items; let i = index">
+					<th text-left> 
+						<p>{{d.product.name}}</p>
+						<p *ngFor="let da of d.aggregates; let i = index"> {{da.name}} </p>
+						<p *ngFor="let dg of d.garnishes; let i = index"> {{dg.name}} </p>
+						<p *ngFor="let dv of d.variations; let i = index"> {{dv.name}} </p>
+					</th>
+					<th text-center> {{d.quantity}} </th>
+					<th text-center> {{d.charged_points}} </th>
+					<th text-center> {{d.charged_price}} </th>
+				</tr>
+				<tr class="total">
+					<th text-center>  </th>
+					<th text-center>  </th>
+					<th text-center class="total-th"> {{totalPointsOrder[i]}} </th>
+					<th text-center class="total-th"> {{totalPriceOrder[i]}} </th>
+				</tr>
+			</table>
+		</div>
+
+		<button (click)="responsable(detail.id)" ion-button block small> Reestablecer responsable </button>
+		<button (click)="close(detail.id)" ion-button block> CERRAR MESA </button>
+	</div>
 </ion-content>

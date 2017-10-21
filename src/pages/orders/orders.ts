@@ -69,6 +69,35 @@ export class OrdersPage {
         });
     }
 
+    page(page){
+        let _this_ = this;
+        let number =  page.split("=");
+        console.log(number[1]);
+        this.next = undefined;
+        this.prev = undefined;
+
+        return this.apiProvider.call("get", "active_orders?page=" + number[1], true).then( response => {
+            console.log(response);
+            this.next = response.next_page_url;
+            if (response.next_page_url != null) {
+                this.next = response.next_page_url;
+            }
+            if (response.prev_page_url != null) {
+                this.prev = response.prev_page_url;
+            }
+          
+            this.orders = response.data.filter(element => {
+                return element;
+            });
+            return this.orders;
+        }).catch(function(error: any){
+            console.log("mi error");
+            console.log(error);
+            _this_.httpErrorHandler.displayError(error);
+        });
+
+    }
+
  	ionViewDidLoad() {
   	}
 

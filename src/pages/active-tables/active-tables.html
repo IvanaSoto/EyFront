@@ -27,11 +27,14 @@
 			<th text-left> {{t.name}} </th>
 			<th text-left> {{t.waiter.name}} {{t.waiter.lastname}} </th>
 			<th text-left> {{t.code}} </th>
-			<th> <button (click)="goToDetail(t.id)" ion-button class="primary-color">Detalle</button> </th>
+			<th class="button-th"> <button (click)="goToDetail(t.id)" ion-button clear color="primary">Detalle</button> </th>
 		</tr>
 	</table>
 
-	<button *ngIf="prev != undefined" ion-button class="primary-color"> Anterior </button>
-	<button *ngIf="next != undefined" ion-button class="primary-color"> Siguiente </button>
+	<div text-center>
+		<button *ngIf="prev != undefined" (click)="page(prev)" ion-button clear color="primary"> Anterior </button>
+		<button *ngIf="next != undefined" (click)="page(next)" ion-button clear color="primary"> Siguiente </button>
+	</div>
+	
 </ion-content>
 

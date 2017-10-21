@@ -16,6 +16,39 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bg">
+
+	<div *ngIf="detail != undefined">
+		<p><strong>Mozo:</strong> {{detail.table.waiter.name}} {{detail.table.waiter.lastname}}</p>
+		<p><strong>Mesa:</strong> {{detail.table.name}} </p>
+		<div class="pedido">
+			<h1>Pedido</h1>
+			<table>
+				<tr>
+					<th text-center class="title"> Producto </th>
+					<th text-center class="title"> Cant. </th>
+					<th text-center class="title"> Puntos </th>
+					<th text-center class="title"> Precio </th>
+				</tr>
+				<tr *ngFor="let d of detail.order_items; let i = index">
+					<th text-left>
+						<p>{{d.product.name}}</p>
+						<p *ngFor="let da of d.aggregates; let i = index"> {{da.name}} </p>
+						<p *ngFor="let dg of d.garnishes; let i = index"> {{dg.name}} </p>
+						<p *ngFor="let dv of d.variations; let i = index"> {{dv.name}} </p>
+					</th>
+					<th text-center> {{d.quantity}} </th>
+					<th text-center> {{d.charged_points}} </th>
+					<th text-center> {{d.charged_price}} </th>
+				</tr>
+				<tr class="total">
+					<th text-center>  </th>
+					<th text-center>  </th>
+					<th text-center class="total-th"> {{totalPoints}} </th>
+					<th text-center class="total-th"> {{totalPrice}} </th>
+				</tr>
+			</table>
+		</div>
+	</div>
 
 </ion-content>

@@ -21,6 +21,8 @@ import { HttpErrorHandlerProvider } from '../../providers/http-error-handler/htt
 export class WaiterCallsPage {
 
 	calls: any[];
+    next: string;
+    prev: string;
 
 	constructor(public navCtrl: NavController,
 				public navParams: NavParams,
@@ -47,13 +49,42 @@ export class WaiterCallsPage {
             this.calls = response.data.filter(element => {
                 return element;
             });
-            console.log(this.tables);
+
             return this.calls;
         }).catch(function(error: any){
             console.log("mi error");
             console.log(error);
             _this_.httpErrorHandler.displayError(error);
         });
+    }
+
+    page(page){
+        let _this_ = this;
+        let number =  page.split("=");
+        console.log(number[1]);
+        this.next = undefined;
+        this.prev = undefined;
+
+        return this.apiProvider.call("get", "active_waiter_calls?page=" + number[1], true).then( response => {
+            console.log(response);
+            this.next = response.next_page_url;
+            if (response.next_page_url != null) {
+                this.next = response.next_page_url;
+            }
+            if (response.prev_page_url != null) {
+                this.prev = response.prev_page_url;
+            }
+          
+            this.calls = response.data.filter(element => {
+                return element;
+            });
+            return this.calls;
+        }).catch(function(error: any){
+            console.log("mi error");
+            console.log(error);
+            _this_.httpErrorHandler.displayError(error);
+        });
+
     }
     
 	ionViewDidLoad() {

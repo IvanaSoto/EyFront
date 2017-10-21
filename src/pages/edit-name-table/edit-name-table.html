@@ -1,0 +1,32 @@
+<!--
+  Generated template for the EditNameTablePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Editar nombre</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="bg">
+
+	<h1>Ingresar nuevo nombre de mesa</h1>
+    <form [formGroup]="table">
+        <ion-list>
+            <ion-item>
+            	<ion-label>Mesa</ion-label>
+            	<ion-input type="text" formControlName="name" [(ngModel)]="name" ></ion-input>
+            </ion-item>
+        </ion-list>
+        <div>
+            <p>{{this.error}}</p>
+        </div>
+        <button (click)="save()" ion-button block class="primary-color">Guardar</button>
+    </form>
+
+</ion-content>

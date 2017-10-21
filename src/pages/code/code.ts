@@ -35,14 +35,14 @@ export class CodePage {
     this.authProvider = authProvider;
 
     this.table = formBuilder.group({
-        name: [
-          '',
-          Validators.compose([
-            Validators.required,
-            Validators.maxLength(255),
-          ])
-        ],
-      });
+      name: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(255),
+        ])
+      ],
+    });
 	
   }
 

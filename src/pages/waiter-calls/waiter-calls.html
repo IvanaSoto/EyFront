@@ -33,6 +33,8 @@
 		</tr>
 	</table>
 
-	<button *ngIf="prev != undefined" ion-button class="primary-color"> Anterior </button>
-	<button *ngIf="next != undefined" ion-button class="primary-color"> Siguiente </button>
+	<div text-center>
+		<button *ngIf="prev != undefined" (click)="page(prev)" ion-button clear color="primary"> Anterior </button>
+		<button *ngIf="next != undefined" (click)="page(next)" ion-button clear color="primary"> Siguiente </button>
+	</div>
 </ion-content>

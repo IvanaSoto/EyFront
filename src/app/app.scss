@@ -34,7 +34,7 @@
 h1{
 	font-size: 1.5em;
 	margin-top: 20px !important;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
 .code-box{
 	border: 2px solid #E01E25;
@@ -44,4 +44,15 @@ h1{
 .code{
 	margin: 25px!important;
 	font-size: 2.5em;
+}
+.pedido{
+	border-top: 2px solid #555;
+	margin-bottom: 30px;
+}
+p {
+    margin: 7px 0px;
+}
+.editar{
+	height: inherit;
+	padding: 5px 0px;
 }

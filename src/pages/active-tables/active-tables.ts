@@ -34,14 +34,13 @@ export class ActiveTablesPage {
                 private storage: Storage,
 			    private httpErrorHandler: HttpErrorHandlerProvider) {
 
-	  	this.read();
+        this.read();
   	}
 
     read(){
         let _this_ = this;
         return this.apiProvider.call("get", "active_tables", true).then( response => {
             console.log(response);
-            this.next = response.next_page_url;
             if (response.next_page_url != null) {
                 this.next = response.next_page_url;
             }
@@ -52,6 +51,7 @@ export class ActiveTablesPage {
             this.tables = response.data.filter(element => {
                 let table = new Table(
                     element.id,
+                    true,
                     element.name,
                     element.quantity_customers,
                     element.code,
@@ -77,6 +77,46 @@ export class ActiveTablesPage {
         });
     }
 
-    ionViewDidLoad() {}
+    page(page){
+        let _this_ = this;
+        let number =  page.split("=");
+        console.log(number[1]);
+        this.next = undefined;
+        this.prev = undefined;
+
+        return this.apiProvider.call("get", "active_tables?page=" + number[1], true).then( response => {
+            console.log(response);
+            this.next = response.next_page_url;
+            if (response.next_page_url != null) {
+                this.next = response.next_page_url;
+            }
+            if (response.prev_page_url != null) {
+                this.prev = response.prev_page_url;
+            }
+          
+            this.tables = response.data.filter(element => {
+                let table = new Table(
+                    element.id,
+                    true,
+                    element.name,
+                    element.quantity_customers,
+                    element.code,
+                    element.created_at
+                );
+                return table;
+            });
+            console.log(this.tables);
+            return this.tables;
+        }).catch(function(error: any){
+            console.log("mi error");
+            console.log(error);
+            _this_.httpErrorHandler.displayError(error);
+        });
+
+    }
+
+    ionViewDidLoad() {
+        this.read();
+    }
 
 }

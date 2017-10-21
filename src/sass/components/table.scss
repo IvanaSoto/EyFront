@@ -1,5 +1,4 @@
 table{
-   border: 3px solid #555;
    .title{
       text-transform: uppercase;
       font-weight: 700;
@@ -15,5 +14,21 @@ table{
    }
    tr:nth-child(odd){
       background-color: #ffeeee;
+   }
+   .button-th{
+      padding: 0px;
+   }
+   .total{
+      background-color: transparent !important;
+      th{
+         border: 0px;
+      }
+   }
+   .total-th{
+      border: 2px solid #555 !important;
+      font-size: 1.2em;
+   }
+   p{
+      margin: 2px 0px;
    }
 }
