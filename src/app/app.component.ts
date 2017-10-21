@@ -87,11 +87,11 @@ export class MyApp {
         this.menuCtrl.enable(true);
 
             this.pages = [
+              { title: 'Cargar código', action:'open-page', component: "CodePage" },
+              { title: 'Mesas activas', action:'open-page', component: 'ActiveTablesPage' },
               { title: 'Llamadas', action:'open-page', component: 'WaiterCallsPage' },
               { title: 'Ordenes', action:'open-page', component: 'OrdersPage' },
-              { title: 'Mesas activas', action:'open-page', component: 'ActiveTablesPage' },
-              { title: 'Cargar código', action:'open-page', component: "CodePage" },
-              { title: 'Log Out', action:'logout', component: "" }
+              { title: 'Salir', action:'logout', component: "" }
             ];
         
       }
