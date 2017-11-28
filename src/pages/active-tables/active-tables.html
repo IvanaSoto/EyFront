@@ -15,19 +15,19 @@
 
 </ion-header>
 
-<ion-content padding class="bg">
+<ion-content class="bg">
 	<table>
 		<tr>
-			<th text-center class="title"> Mesa </th>
-			<th text-center class="title"> Mozo </th>
-			<th text-center class="title"> Código </th>
-			<th text-center class="title"> Detalle </th>
+			<th class="title"> Mesa </th>
+			<th class="title"> Mozo </th>
+			<th class="title"> Código </th>
+			<th class="title">  </th>
 		</tr>
 		<tr  *ngFor="let t of tables; let i = index">
 			<th text-left> {{t.name}} </th>
 			<th text-left> {{t.waiter.name}} {{t.waiter.lastname}} </th>
 			<th text-left> {{t.code}} </th>
-			<th class="button-th"> <button (click)="goToDetail(t.id)" ion-button clear color="primary">Detalle</button> </th>
+			<th class="button-th"> <button (click)="goToDetail(t.id)" ion-button clear color="primary"> Más > </button> </th>
 		</tr>
 	</table>
 

@@ -17,13 +17,13 @@
 </ion-header>
 
 
-<ion-content padding class="bg">
+<ion-content class="bg">
 	<table>
 		<tr>
-			<th text-center class="title"> Mesa </th>
-			<th text-center class="title"> Mozo </th>
-			<th text-center class="title"> Código </th>
-			<th text-center class="title"> Pedido </th>
+			<th class="title"> Mesa </th>
+			<th class="title"> Mozo </th>
+			<th class="title"> Código </th>
+			<th class="title"> Pedido </th>
 		</tr>
 		<tr  *ngFor="let c of calls; let i = index">
 			<th text-left> {{c.table.name}} </th>
