@@ -23,6 +23,7 @@ export class WaiterCallsPage {
 	calls: any[];
     next: string;
     prev: string;
+    interval: any;
 
 	constructor(public navCtrl: NavController,
 				public navParams: NavParams,
@@ -59,9 +60,13 @@ export class WaiterCallsPage {
     }
 
     refresh(){
-        setInterval(() => {
+        this.interval = setInterval(() => {
             this.read();
         }, 5000);
+    }
+
+    ionViewWillLeave() {
+        clearInterval(this.interval);
     }
 
     page(page){

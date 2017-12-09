@@ -25,6 +25,7 @@ export class OrdersPage {
 	orders: any[];
     next: string;
     prev: string;
+    interval: any;
 
  	constructor(public navCtrl: NavController,
   				public navParams: NavParams,
@@ -51,7 +52,6 @@ export class OrdersPage {
             this.orders = response.data.filter(element => {
                 return element;
             });
-            console.log(this.orders);
             return this.orders;
         }).catch(function(error: any){
             console.log("mi error");
@@ -61,9 +61,13 @@ export class OrdersPage {
     }
 
     refresh(){
-        setInterval(() => {
+        this.interval = setInterval(() => {
             this.read();
         }, 5000);
+    }
+
+    ionViewWillLeave() {
+        clearInterval(this.interval);
     }
 
     goToDetail(id){

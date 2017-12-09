@@ -24,6 +24,7 @@ export class LogInPage {
   				private httpErrorHandler: HttpErrorHandlerProvider) {
 
 		this.authProvider = authProvider;
+		clearInterval();
 	}
 
 	login() {
