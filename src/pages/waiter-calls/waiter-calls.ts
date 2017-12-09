@@ -32,12 +32,12 @@ export class WaiterCallsPage {
 				private httpErrorHandler: HttpErrorHandlerProvider) {
 
 		this.read();
+        this.refresh();
 	}
 
     read(){
         let _this_ = this;
         return this.apiProvider.call("get", "active_waiter_calls", true).then( response => {
-            console.log(response);
             this.next = response.next_page_url;
             if (response.next_page_url != null) {
                 this.next = response.next_page_url;
@@ -56,6 +56,12 @@ export class WaiterCallsPage {
             console.log(error);
             _this_.httpErrorHandler.displayError(error);
         });
+    }
+
+    refresh(){
+        setInterval(() => {
+            this.read();
+        }, 5000);
     }
 
     page(page){

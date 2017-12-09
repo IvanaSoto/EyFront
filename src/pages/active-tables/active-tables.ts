@@ -35,12 +35,12 @@ export class ActiveTablesPage {
 			    private httpErrorHandler: HttpErrorHandlerProvider) {
 
         this.read();
+        this.refresh();
   	}
 
     read(){
         let _this_ = this;
         return this.apiProvider.call("get", "active_tables", true).then( response => {
-            console.log(response);
             if (response.next_page_url != null) {
                 this.next = response.next_page_url;
             }
@@ -59,13 +59,18 @@ export class ActiveTablesPage {
                 );
                 return table;
             });
-            console.log(this.tables);
             return this.tables;
         }).catch(function(error: any){
             console.log("mi error");
             console.log(error);
             _this_.httpErrorHandler.displayError(error);
         });
+    }
+
+    refresh(){
+        setInterval(() => {
+            this.read();
+        }, 5000);
     }
 
     goToDetail(id){
