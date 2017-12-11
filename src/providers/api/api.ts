@@ -8,7 +8,12 @@ import { TokenProvider } from '../token/token';
 @Injectable()
 export class ApiProvider {
 
-	private API_URL = "http://127.0.0.1:8000/api/";
+	// Developement
+	//  private API_URL = "http://127.0.0.1:8000/api/";
+
+	// Production
+	private API_URL = "http://52.15.235.33/api/";
+
 	contentHeader = new Headers({"Content-Type": "application/json"});
 	jwtHelper: JwtHelper = new JwtHelper();
 
